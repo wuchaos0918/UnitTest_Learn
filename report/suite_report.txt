@@ -1,0 +1,15 @@
+test01 (unittest_demo.testcases.test_register.TestRegister) ... ok
+test02 (unittest_demo.testcases.test_register.TestRegister) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+OK
+test04 (unittest_demo.testcases.test_login.TestLogin) ... ok
+test05 (unittest_demo.testcases.test_login.TestLogin) ... ok
+test06 (unittest_demo.testcases.test_login.TestLogin) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+OK

@@ -1,0 +1,33 @@
+test04 (test_login.TestLogin) ... ok
+test05 (test_login.TestLogin) ... ok
+test06 (test_login.TestLogin) ... ok
+test01 (test_register.TestRegister) ... ok
+test02 (test_register.TestRegister) ... ok
+test03 (test_register.TestRegister) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK
+test04 (test_login.TestLogin) ... ok
+test05 (test_login.TestLogin) ... ok
+test06 (test_login.TestLogin) ... ok
+test01 (test_register.TestRegister) ... ok
+test02 (test_register.TestRegister) ... ok
+test03 (test_register.TestRegister) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.008s
+
+OK
+test04 (test_login.TestLogin) ... ok
+test05 (test_login.TestLogin) ... ok
+test06 (test_login.TestLogin) ... ok
+test01 (test_register.TestRegister) ... ok
+test02 (test_register.TestRegister) ... ok
+test03 (test_register.TestRegister) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK
