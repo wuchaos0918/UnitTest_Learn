@@ -9,30 +9,14 @@ class TestLogin(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        print('setUpClass')
+        print('setUpClass：打开登录页面')
 
     @classmethod
     def tearDownClass(cls) -> None:
-        print('tearDownClass')
+        print('tearDownClass：关闭登录页面')
 
-    def setUp(self) -> None:
-        print('setUp')
-
-    def tearDown(self) -> None:
-        print('tearDown')
+    def test03(self):
+        print('test03：登录成功用例')
 
     def test04(self):
-        print('test04')
-
-    def test05(self):
-        print('test05')
-
-    def test06(self):
-        print('test06')
-
-
-
-
-
-
-
+        print('test04：登录失败用例')

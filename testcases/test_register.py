@@ -7,29 +7,14 @@ import unittest
 
 class TestRegister(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        print('setUpClass')
-
-    @classmethod
-    def tearDownClass(cls) -> None:
-        print('tearDownClass')
-
     def setUp(self) -> None:
-        print('setUp')
+        print('setUp：打开注册页面')
 
     def tearDown(self) -> None:
-        print('tearDown')
+        print('tearDown：关闭注册页面')
 
     def test01(self):
-        print('test01')
+        print('test01：注册成功用例')
 
     def test02(self):
-        print('test02')
-
-    def test03(self):
-        print('test03')
-
-
-
-
+        print('test02：注册失败用例')

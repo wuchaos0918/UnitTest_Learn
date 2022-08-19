@@ -2,79 +2,103 @@
 测试套件加载测试用例的方法
 
 """
-import sys
-from os.path import abspath,dirname
-sys.path.insert(0,dirname(dirname(abspath(__file__))))
-
 import unittest
-from testcases import TestRegister
-from testcases import TestLogin
+from testcases import test_register, test_login
 
 
-#加载单个测试用例
+# addTest(test) 添加一个TestCase或者TestSuite到测试套件中，test必须是已经实例化的对象。
+# 加载单个测试用例
 def suite1():
-    # 测试套件
-    suite = unittest.TestSuite()
-    #加载测试用例
-    suite.addTest(TestRegister('test01'))
-    suite.addTest(TestRegister('test02'))
-    return suite
+    testsuite = unittest.TestSuite()
+    test = test_register.TestRegister('test01')
+    testsuite.addTest(test)
+    return testsuite
 
-#加载多个测试用例
+
+# 逐个加载测试用例
+def suite11():
+    testsuite = unittest.TestSuite()
+    test1 = test_register.TestRegister('test01')
+    test2 = test_register.TestRegister('test02')
+    testsuite.addTest(test1)
+    testsuite.addTest(test2)
+    return testsuite
+
+
+# 加载单个测试套件
+def suite12():
+    testsuite = unittest.TestSuite()
+    test2 = test_register.TestRegister('test02')
+    testsuite.addTest(suite1())
+    testsuite.addTest(test2)
+    return testsuite
+
+
+# addTests(tests) 添加多个TestCase或者TestSuite到测试套件中,tests必须是已经实例化，并且可迭代的对象.
+# 加载多个测试用例
 def suite2():
-    suite = unittest.TestSuite()
-    tests = [TestRegister('test02'),TestLogin('test05')]
-    suite.addTests(tests)
-    return suite
+    testsuite = unittest.TestSuite()
+    tests = [test_login.TestLogin('test03'), test_login.TestLogin('test04')]
+    testsuite.addTests(tests)
+    return testsuite
 
-#使用loader加载器，加载指定类中的所有测试用例,一次只能加载一个测试类
+
+# 加载多个测试套件
+def suite21():
+    testsuite = unittest.TestSuite()
+    tests = [suite1(), suite2()]
+    testsuite.addTests(tests)
+    return testsuite
+
+
+# TestLoader() 测试加载器
+# loadTestsFromTestCase(testCaseClass) 加载某个测试类中的所有测试用例
 def suite3():
-    suite = unittest.TestSuite()
+    testsuite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    tests = loader.loadTestsFromTestCase(TestRegister)
-    suite.addTests(tests)
-    return suite
+    tests = loader.loadTestsFromTestCase(test_register.TestRegister)
+    testsuite.addTests(tests)
+    return testsuite
 
-#使用loader加载器，加载指定模块的所有测试用例
+
+# loadTestsFromModule(module) 加载某个模块中的所有测试用例
 def suite4():
-    suite = unittest.TestSuite()
-    loader = unittest.TestLoader()       #加载器
-    tests = loader.loadTestsFromModule(test_framework.unittest_demo.testcases.test_login)
-    suite.addTests(tests)
-    return suite
+    testsuite = unittest.TestSuite()
+    loader = unittest.TestLoader()
+    tests = loader.loadTestsFromModule(test_register)
+    testsuite.addTests(tests)
+    return testsuite
 
-#根据给定的字符串来获取测试用例套件，字符串可以是模块名，测试类名，测试类中的测试方法名，或者一个可调用的是实例对象
+
+# loadTestsFromName(name) 根据给定的字符串来获取测试用例套件，字符串可以是模块名，测试类名，测试类中的测试方法名
 def suite5():
-    suite = unittest.TestSuite()
-    loader = unittest.TestLoader()       #加载器
-    tests = loader.loadTestsFromName('unittest_demo.testcases.test_register')
-    suite.addTests(tests)
-    return suite
+    testsuite = unittest.TestSuite()
+    loader = unittest.TestLoader()
+    tests = loader.loadTestsFromName('testcases.test_register')
+    testsuite.addTests(tests)
+    return testsuite
 
-#与name功能相同，只不过接受的是字符串列表
+
+# loadTestsFromNames(names) 与name功能相同，只不过接受的是字符串列表
 def suite6():
-    suite = unittest.TestSuite()
-    loader = unittest.TestLoader()       #加载器
-    tests = loader.loadTestsFromNames(['unittest_demo.testcases.test_register','unittest_demo.testcases.test_login'])
-    suite.addTests(tests)
-    return suite
+    testsuite = unittest.TestSuite()
+    loader = unittest.TestLoader()
+    tests = loader.loadTestsFromNames(['testcases.test_register', 'testcases.test_login'])
+    testsuite.addTests(tests)
+    return testsuite
 
-# discover()方法按照文件路径和方法名模糊查询加载测试用例
+
+# discover(start_dir, pattern='test*.py') 根据指定的目录和匹配规则，递归所有子目录模糊查询加载测试用例
 def suite7():
-    suite = unittest.TestSuite()
-    loader = unittest.TestLoader()       #加载器
-    tests = loader.discover(start_dir='testcases', pattern='test*.py')
-    suite.addTests(tests)
-    return suite
+    testsuite = unittest.TestSuite()
+    loader = unittest.TestLoader()
+    tests = loader.discover(start_dir='./testcases', pattern='test*.py')
+    testsuite.addTests(tests)
+    return testsuite
 
-# 运行测试套件,生成测试报告
+
+# 运行测试套件
 if __name__ == '__main__':
-    suite = suite4()
-    with open(file='report/suite_report.txt', mode='a') as file:
-        runner = unittest.TextTestRunner(verbosity=2,stream=file)
-        runner.run(suite)
-        file.close()
-
-
-
-
+    suite = suite1()
+    runner = unittest.TextTestRunner(verbosity=2)
+    runner.run(suite)
