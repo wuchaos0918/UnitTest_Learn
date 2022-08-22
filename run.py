@@ -1,9 +1,5 @@
 """
-程序主入口，运行测试用例，生成测试报告
-1、实例化一个测试套件
-2、加载测试用例到测试套件
-3、运行测试套件
-4、生成测试报告
+程序主入口
 
 """
 import unittest
@@ -16,7 +12,7 @@ def suite():
 
     # TestLoader测试加载器
     loader = unittest.TestLoader()
-    tests = loader.discover(start_dir='testcases', pattern='test_register.py')
+    tests = loader.discover(start_dir='testcases', pattern='test*.py')
 
     # 加载测试用例到测试套件
     testsuite.addTests(tests)
@@ -27,6 +23,6 @@ def suite():
 # 运行测试套件
 if __name__ == '__main__':
     suite = suite()
-    # 测试运行器
+    # 测试运行器，生成文本格式测试报告
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
