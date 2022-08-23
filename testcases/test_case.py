@@ -29,18 +29,22 @@ class TestCase(unittest.TestCase):
         pass
 
 
-# def suite():
-#     testsuite = unittest.TestSuite()
-#     tests = [TestCase('test_one'), TestCase('test_two')]
-#     suite.addTests(tests)
-#     return testsuite
+def suite():
+    testsuite = unittest.TestSuite()
+    loader = unittest.TestLoader()
+    tests = loader.loadTestsFromTestCase(TestCase)
+    testsuite.addTests(tests)
+    return testsuite
 
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-
-    # TestCase().run()
-
-    # suite = suite()
+    # TestResult
     # test_result = unittest.TestResult()
+
+    # TestCase
+    # TestCase().run(result=test_result)
+
+    # TestSuite
+    # suite = suite()
     # suite.run(result=test_result)
