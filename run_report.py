@@ -3,7 +3,7 @@
 
 """
 import unittest
-# import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 from BeautifulReport import BeautifulReport
 
 
@@ -23,14 +23,14 @@ def suite():
 #         runner.run(suite)
 
 # HTMLTestRunner
-# if __name__ == '__main__':
-#     suite = suite()
-#     with open(file='HTMLReport.html', mode='w') as file:
-#         runner = HTMLTestRunner.HTMLTestRunner(stream=file, verbosity=2)
-#         runner.run(suite)
-
-# BeautifulReport
 if __name__ == '__main__':
     suite = suite()
-    result = BeautifulReport(suite)
-    result.report(report_dir='./report', filename='breport.html', description='注册和登录功能测试报告')
+    with open(file='HTMLReport.html', mode='wb') as file:
+        runner = HTMLTestRunner(stream=file, verbosity=2)
+        runner.run(suite)
+
+# # BeautifulReport
+# if __name__ == '__main__':
+#     suite = suite()
+#     result = BeautifulReport(suite)
+#     result.report(report_dir='./report', filename='breport.html', description='注册和登录功能测试报告')
