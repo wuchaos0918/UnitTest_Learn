@@ -3,14 +3,14 @@
 
 """
 import unittest
+
 from HTMLTestRunner import HTMLTestRunner
-from BeautifulReport import BeautifulReport
 
 
 def suite():
     testsuite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    tests = loader.discover(start_dir='./testcases', pattern='test*.py')
+    tests = loader.discover(start_dir='testcases', pattern='test*.py')
     testsuite.addTests(tests)
     return testsuite
 

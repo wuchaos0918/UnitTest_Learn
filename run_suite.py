@@ -3,6 +3,7 @@
 
 """
 import unittest
+
 from testcases import test_register, test_login
 
 
@@ -92,7 +93,7 @@ def suite6():
 def suite7():
     testsuite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    tests = loader.discover(start_dir='./testcases', pattern='test*.py')
+    tests = loader.discover(start_dir='testcases', pattern='test*.py')
     testsuite.addTests(tests)
     return testsuite
 
